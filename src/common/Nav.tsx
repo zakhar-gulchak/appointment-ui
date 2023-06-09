@@ -1,5 +1,6 @@
 import type { Component } from 'solid-js'
 
+// todo reuse this component
 const Nav: Component = () => {
   return (
     <nav class="container-fluid">

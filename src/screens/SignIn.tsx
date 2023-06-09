@@ -1,26 +1,33 @@
 import { Component, createSignal } from 'solid-js'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
-import { user } from '../store/user'
+// import { user } from '../store/user'
 import { auth } from '../config/firebase'
+// import firebase from 'firebase/compat'
+
 
 const SignIn: Component = () => {
   const [email, setEmail] = createSignal('')
   const [password, setPassword] = createSignal('')
+  const [rememberMe, setRememberMe] = createSignal(false)
+  const [error, setError] = createSignal('')
+  const [errorType, setErrorType] = createSignal<'email' | 'password' | null>(null)
   const onLogin = () => {
-    console.log(email(), password())
-    createUserWithEmailAndPassword(auth, email(), password())
+    setError('')
+    setErrorType(null)
+
+    signInWithEmailAndPassword(auth, email(), password())
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user
         console.log(user)
-        // ...
       })
-      .catch((error) => {
-        console.log(error)
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ..
+      .catch(error => {
+        setError(error.code)
+        if (error.code.includes('password')) {
+          setErrorType('password')
+        } else {
+          setErrorType('email')
+        }
       })
   }
 
@@ -37,11 +44,14 @@ const SignIn: Component = () => {
               onChange={e => setEmail(e.target.value)}
               type="text"
               name="login"
-              placeholder="SignUp"
-              aria-label="SignUp"
-              autocomplete="nickname"
+              placeholder="Email"
+              aria-label="Email"
+              autocomplete="email"
+              aria-invalid={errorType() === 'email' || 'none'}
+              aria-describedby="email-error"
               required
             />
+            {errorType() === 'email' && <small id="email-error">{error()}</small>}
             <input
               onChange={e => setPassword(e.target.value)}
               type="password"
@@ -49,11 +59,14 @@ const SignIn: Component = () => {
               placeholder="Password"
               aria-label="Password"
               autocomplete="current-password"
+              aria-invalid={errorType() === 'password' || 'none'}
+              aria-describedby="password-error"
               required
             />
+            {errorType() === 'password' && <small id="password-error">{error()}</small>}
             <fieldset>
               <label for="remember">
-                <input type="checkbox" role="switch" id="remember" name="remember" />
+                <input type="checkbox" role="switch" id="remember" name="remember" onChange={e => setRememberMe(e.target.checked)} />
                 Remember me
               </label>
             </fieldset>

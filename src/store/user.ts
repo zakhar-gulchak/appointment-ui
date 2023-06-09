@@ -1,9 +1,9 @@
-import { createSignal, createMemo, createRoot } from "solid-js";
+import { createSignal, createRoot } from "solid-js";
 
-function createCounter() {
+function createUser() {
   const [user, setUser] = createSignal({ token: '' });
 
   return { user, setUser };
 }
 
-export default createRoot(createCounter);
+export default createRoot(createUser);

@@ -3,7 +3,7 @@ import { Routes, Route } from '@solidjs/router'
 import { lazy } from 'solid-js'
 
 import Home from './screens/Landing'
-import Nav from './common/Nav'
+import RouteGuard from './screens/RouteGuard'
 import Footer from './common/Footer'
 import './App.module.css'
 
@@ -14,12 +14,14 @@ const Dashboard = lazy(() => import('./screens/Dashboard'))
 const App: Component = () => {
   return (
     <>
-      <Nav />
       <Routes>
         <Route path="/" component={Home} />
         <Route path="/signin" component={SignIn} />
         <Route path="/singup" component={SignUp} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/" component={RouteGuard}>
+          <Route path="/dashboard" component={Dashboard} />
+        </Route>
+        <Route path="*" element={()=> <div>Page Not found!!!</div>} />
       </Routes>
       <Footer />
     </>
