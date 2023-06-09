@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
-import devtools from 'solid-devtools/vite';
+import { defineConfig } from 'vite'
+import solidPlugin from 'vite-plugin-solid'
+import devtools from 'solid-devtools/vite'
 
 export default defineConfig({
   plugins: [
@@ -13,7 +13,7 @@ export default defineConfig({
         jsxLocation: true,
       },
     }),
-    solidPlugin()
+    solidPlugin(),
   ],
   server: {
     port: 3000,
@@ -21,4 +21,4 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-});
+})
