@@ -5,7 +5,7 @@ import { lazy } from 'solid-js'
 import Home from './screens/Landing'
 import RouteGuard from './screens/RouteGuard'
 import Footer from './common/Footer'
-import './App.module.css'
+import './App.scss'
 
 const SignIn = lazy(() => import('./screens/SignIn'))
 const SignUp = lazy(() => import('./screens/SignUp'))
@@ -17,7 +17,7 @@ const App: Component = () => {
       <Routes>
         <Route path="/" component={Home} />
         <Route path="/signin" component={SignIn} />
-        <Route path="/singup" component={SignUp} />
+        <Route path="/signup" component={SignUp} />
         <Route path="/" component={RouteGuard}>
           <Route path="/dashboard" component={Dashboard} />
         </Route>

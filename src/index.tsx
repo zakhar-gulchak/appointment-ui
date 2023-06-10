@@ -3,7 +3,7 @@ import { render } from 'solid-js/web'
 import { Router } from '@solidjs/router'
 import '@picocss/pico'
 
-import './index.css'
+import './index.scss'
 import App from './App'
 
 render(

@@ -1,9 +1,10 @@
 import { Component, createSignal } from 'solid-js'
+import { Link } from '@solidjs/router'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 
-// import { user } from '../store/user'
 import { auth } from '../config/firebase'
-// import firebase from 'firebase/compat'
+import styles from './SignIn.module.scss'
+import './SignIn.scss'
 
 
 const SignIn: Component = () => {
@@ -37,7 +38,7 @@ const SignIn: Component = () => {
         <div>
           <hgroup>
             <h1>Sign in</h1>
-            <h2>A minimalist layout for SignUp pages</h2>
+            <h2>Please fill your credentials</h2>
           </hgroup>
           <form>
             <input
@@ -70,16 +71,19 @@ const SignIn: Component = () => {
                 Remember me
               </label>
             </fieldset>
-            <button
-              type="submit"
-              class="contrast"
-              onClick={(e) => {
-                e.preventDefault()
-                onLogin()
-              }}
-            >
-              SignUp
-            </button>
+            <div class={styles.submitButton}>
+              <button
+                type="submit"
+                class="contrast"
+                onClick={(e) => {
+                  e.preventDefault()
+                  onLogin()
+                }}
+              >
+                SignUp
+              </button>
+              <span>Not registered yet? <Link href="/signup" class="secondary">Sign Up</Link></span>
+            </div>
           </form>
         </div>
         <div />

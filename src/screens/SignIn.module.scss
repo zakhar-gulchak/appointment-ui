@@ -1,0 +1,8 @@
+.submitButton {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  span {
+    padding: var(--pico-form-element-spacing-vertical) 0;
+  }
+}
