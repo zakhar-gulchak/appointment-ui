@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@merged/solid-apollo": "^1.7.1",
-    "@picocss/pico": "^2.0.0-alpha1",
     "@solidjs/router": "^0.8.2",
     "firebase": "^10.1.0",
     "solid-js": "^1.7.8"
