@@ -1,5 +1,6 @@
 import { Component, createSignal } from 'solid-js'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { FirebaseError } from '@firebase/util'
 
 import { auth } from '../config/firebase'
 import './SignIn.scss'
@@ -19,11 +20,13 @@ const SignUp: Component = () => {
         console.log(user)
       })
       .catch(error => {
-        setError(error.code)
-        if (error.code.includes('password')) {
-          setErrorType('password')
-        } else {
-          setErrorType('email')
+        if (error instanceof FirebaseError) {
+          setError(error.code)
+          if (error.code.includes('password')) {
+            setErrorType('password')
+          } else {
+            setErrorType('email')
+          }
         }
       })
   }

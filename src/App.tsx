@@ -21,7 +21,7 @@ const App: Component = () => {
         <Route path="/" component={RouteGuard}>
           <Route path="/dashboard" component={Dashboard} />
         </Route>
-        <Route path="*" element={()=> <div>Page Not found!!!</div>} />
+        <Route path="*" element={<div>Page Not found!!!</div>} />
       </Routes>
       <Footer />
     </>

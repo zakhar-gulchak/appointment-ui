@@ -1,33 +1,46 @@
-import { Component, createSignal } from 'solid-js'
-import { Link } from '@solidjs/router'
+import { Component, createEffect, createSignal } from 'solid-js'
+import { Link, useNavigate } from '@solidjs/router'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { FirebaseError } from '@firebase/util'
 
+import { user, setUser } from '../store/user'
 import { auth } from '../config/firebase'
 import styles from './SignIn.module.scss'
 import './SignIn.scss'
 
-
 const SignIn: Component = () => {
+  const navigate = useNavigate()
+  createEffect(() => {
+    if (new Date(user.expirationTime).getTime() > Date.now() && user.accessToken) {
+      console.log('nav')
+      navigate('/dashboard', { replace: true })
+    }
+  })
   const [email, setEmail] = createSignal('')
   const [password, setPassword] = createSignal('')
+  // todo: implement remember me
   const [rememberMe, setRememberMe] = createSignal(false)
   const [error, setError] = createSignal('')
   const [errorType, setErrorType] = createSignal<'email' | 'password' | null>(null)
+
   const onLogin = () => {
     setError('')
     setErrorType(null)
 
     signInWithEmailAndPassword(auth, email(), password())
-      .then((userCredential) => {
-        const user = userCredential.user
-        console.log(user)
+      .then(({ user }) => {
+        auth.currentUser?.getIdTokenResult().then(({token, expirationTime}) => {
+          setUser(user, token, expirationTime)
+        })
       })
       .catch(error => {
-        setError(error.code)
-        if (error.code.includes('password')) {
-          setErrorType('password')
-        } else {
-          setErrorType('email')
+        if (error instanceof FirebaseError) {
+          setError(error.code)
+          if (error.code.includes('password')) {
+            setErrorType('password')
+          } else {
+            setErrorType('email')
+          }
         }
       })
   }
@@ -48,7 +61,7 @@ const SignIn: Component = () => {
               placeholder="Email"
               aria-label="Email"
               autocomplete="email"
-              aria-invalid={errorType() === 'email' || 'none'}
+              aria-invalid={errorType() === 'email' || undefined}
               aria-describedby="email-error"
               required
             />
@@ -60,7 +73,7 @@ const SignIn: Component = () => {
               placeholder="Password"
               aria-label="Password"
               autocomplete="current-password"
-              aria-invalid={errorType() === 'password' || 'none'}
+              aria-invalid={errorType() === 'password' || undefined}
               aria-describedby="password-error"
               required
             />
@@ -80,7 +93,7 @@ const SignIn: Component = () => {
                   onLogin()
                 }}
               >
-                SignUp
+                Sign In
               </button>
               <span>Not registered yet? <Link href="/signup" class="secondary">Sign Up</Link></span>
             </div>

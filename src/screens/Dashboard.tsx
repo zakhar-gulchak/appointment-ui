@@ -1,7 +1,16 @@
 import { Component } from 'solid-js'
 
-const Dashboarc: Component = () => {
-  return <main class="container">Dashboard</main>
+const Dashboard: Component = () => {
+  return <>
+      <header>
+        <nav>
+          <ul>
+            <li>Breadcrumbs</li>
+          </ul>
+        </nav>
+      </header>
+      <main class="container">Dashboard</main>
+    </>
 }
 
-export default Dashboarc
+export default Dashboard
