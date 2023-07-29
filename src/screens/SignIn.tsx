@@ -1,39 +1,50 @@
-import { Component, createEffect, createSignal } from 'solid-js'
-import { Link, useNavigate } from '@solidjs/router'
+import { createSignal } from 'solid-js'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
+import Avatar from '@suid/material/Avatar'
+import Button from '@suid/material/Button'
+import CssBaseline from '@suid/material/CssBaseline'
+import TextField from '@suid/material/TextField'
+import FormControlLabel from '@suid/material/FormControlLabel'
+import Checkbox from '@suid/material/Checkbox'
+import Link from '@suid/material/Link'
+import Paper from '@suid/material/Paper'
+import Box from '@suid/material/Box'
+import Grid from '@suid/material/Grid'
+import LockOutlinedIcon from '@suid/icons-material/LockOutlined'
+import Typography from '@suid/material/Typography'
 
-import { user, setUser } from '../store/user'
 import { auth } from '../config/firebase'
-import styles from './SignIn.module.scss'
-import './SignIn.scss'
+import Copyright from '../common/Copyright'
+import { redirectLoggedInUser } from '../utils/navigation'
+import { setUserData } from '../store/user'
 
-const SignIn: Component = () => {
-  const navigate = useNavigate()
-  createEffect(() => {
-    if (new Date(user.expirationTime).getTime() > Date.now() && user.accessToken) {
-      console.log('nav')
-      navigate('/dashboard', { replace: true })
-    }
-  })
-  const [email, setEmail] = createSignal('')
-  const [password, setPassword] = createSignal('')
+export default function SignInSide() {
+  redirectLoggedInUser()
+
   // todo: implement remember me
-  const [rememberMe, setRememberMe] = createSignal(false)
+  // const [rememberMe, setRememberMe] = createSignal(false)
   const [error, setError] = createSignal('')
   const [errorType, setErrorType] = createSignal<'email' | 'password' | null>(null)
 
-  const onLogin = () => {
+  const handleSubmit = (event: FormDataEvent) => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
     setError('')
     setErrorType(null)
 
-    signInWithEmailAndPassword(auth, email(), password())
+    signInWithEmailAndPassword(auth, data.get('email') as string, data.get('password') as string)
       .then(({ user }) => {
-        auth.currentUser?.getIdTokenResult().then(({token, expirationTime}) => {
-          setUser(user, token, expirationTime)
+        auth.currentUser?.getIdTokenResult().then(({ token: accessToken, expirationTime }) => {
+          setUserData({ user: {
+              email: user.email ?? '',
+              firstName: user.displayName?.split(' ')[0] ?? '',
+              lastName: user.displayName?.split(' ')[1] ?? '',
+              expirationTime,
+          }, accessToken })
         })
       })
-      .catch(error => {
+      .catch((error) => {
         if (error instanceof FirebaseError) {
           setError(error.code)
           if (error.code.includes('password')) {
@@ -46,63 +57,101 @@ const SignIn: Component = () => {
   }
 
   return (
-    <main class="container">
-      <article class="grid">
-        <div>
-          <hgroup>
-            <h1>Sign in</h1>
-            <h2>Please fill your credentials</h2>
-          </hgroup>
-          <form>
-            <input
-              onChange={e => setEmail(e.target.value)}
-              type="text"
-              name="login"
-              placeholder="Email"
-              aria-label="Email"
-              autocomplete="email"
-              aria-invalid={errorType() === 'email' || undefined}
-              aria-describedby="email-error"
+    <Grid container component="main" sx={{ height: '100vh' }}>
+      <CssBaseline />
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+          backgroundRepeat: 'no-repeat',
+          get backgroundColor() {
+            return (t: { palette: { mode: string; grey: string[] } }) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]
+          },
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
+          sx={{
+            my: 8,
+            mx: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar
+            sx={{
+              m: 1,
+              bgcolor: 'secondary.main',
+            }}
+          >
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
               required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              error={errorType() === 'email' || undefined}
+              helperText={error()}
+              autoFocus
             />
-            {errorType() === 'email' && <small id="email-error">{error()}</small>}
-            <input
-              onChange={e => setPassword(e.target.value)}
-              type="password"
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               name="password"
-              placeholder="Password"
-              aria-label="Password"
-              autocomplete="current-password"
-              aria-invalid={errorType() === 'password' || undefined}
-              aria-describedby="password-error"
-              required
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              error={errorType() === 'password' || undefined}
+              helperText={error()}
             />
-            {errorType() === 'password' && <small id="password-error">{error()}</small>}
-            <fieldset>
-              <label for="remember">
-                <input type="checkbox" role="switch" id="remember" name="remember" onChange={e => setRememberMe(e.target.checked)} />
-                Remember me
-              </label>
-            </fieldset>
-            <div class={styles.submitButton}>
-              <button
-                type="submit"
-                class="contrast"
-                onClick={(e) => {
-                  e.preventDefault()
-                  onLogin()
-                }}
-              >
-                Sign In
-              </button>
-              <span>Not registered yet? <Link href="/signup" class="secondary">Sign Up</Link></span>
-            </div>
-          </form>
-        </div>
-        <div />
-      </article>
-    </main>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                mt: 3,
+                mb: 2,
+              }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
   )
 }
-
-export default SignIn

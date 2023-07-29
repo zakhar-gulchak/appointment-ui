@@ -1,12 +1,12 @@
 import { Outlet, useNavigate } from '@solidjs/router'
 import { createEffect } from 'solid-js'
 
-import { user } from '../store/user'
+import { userData } from '../store/user'
 
-export default function RouteGuard () {
+export default function RouteGuard() {
   const navigate = useNavigate()
   createEffect(() => {
-    if(!user.accessToken) {
+    if (!userData.accessToken || new Date(userData.user.expirationTime).getTime() < Date.now()) {
       navigate('/signin', { replace: true })
     }
   })
