@@ -16,7 +16,7 @@ const USER_LOCAL_STORAGE_KEY = 'user'
 
 function createUserData() {
   const { email, lastName, firstName, expirationTime } = JSON.parse(
-    localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '',
+    localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}',
   ) as MyUser
   const [userData, setUserData] = createStore({
     accessToken: localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY) ?? '',
@@ -42,4 +42,4 @@ function createUserData() {
   return { userData, setUserData }
 }
 
-export const { userData, setUserData} = createRoot(() => createUserData())
+export const { userData, setUserData} = createRoot(createUserData)
