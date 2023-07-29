@@ -15,7 +15,7 @@ export default defineConfig({
         jsxLocation: true,
       },
     }),
-    solidPlugin(), // ({ hot: false }),
+    solidPlugin({ hot: false }),
   ],
   server: {
     port: 3000,
