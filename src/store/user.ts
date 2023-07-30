@@ -26,7 +26,7 @@ function createUserData() {
       lastName,
       firstName,
       expirationTime,
-    }
+    },
   })
 
   createEffect(() => {
@@ -42,4 +42,4 @@ function createUserData() {
   return { userData, setUserData }
 }
 
-export const { userData, setUserData} = createRoot(createUserData)
+export const { userData, setUserData } = createRoot(createUserData)
