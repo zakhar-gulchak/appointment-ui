@@ -1,1 +1,1 @@
-SolidJS(+Vite) + PicoCSS + ApolloCLient + Hasura + Postgres(Neon)
+SolidJS(+Vite) + SUID + Firebase Auth
