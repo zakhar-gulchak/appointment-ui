@@ -36,12 +36,15 @@ export default function SignInSide() {
     signInWithEmailAndPassword(auth, data.get('email') as string, data.get('password') as string)
       .then(({ user }) => {
         auth.currentUser?.getIdTokenResult().then(({ token: accessToken, expirationTime }) => {
-          setUserData({ user: {
+          setUserData({
+            user: {
               email: user.email ?? '',
               firstName: user.displayName?.split(' ')[0] ?? '',
               lastName: user.displayName?.split(' ')[1] ?? '',
               expirationTime,
-          }, accessToken })
+            },
+            accessToken,
+          })
         })
       })
       .catch((error) => {

@@ -1,5 +1,4 @@
-import { Component, createEffect, createSignal } from 'solid-js'
-import { useNavigate } from '@solidjs/router'
+import { Component, createSignal } from 'solid-js'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
 import Avatar from '@suid/material/Avatar'

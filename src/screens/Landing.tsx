@@ -17,17 +17,11 @@ import Container from '@suid/material/Container'
 
 import Copyright from '../common/Copyright'
 
-
 const tiers = [
   {
     title: 'Free',
     price: '0',
-    description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
-    ],
+    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
     buttonHref: '/signup/free',
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
@@ -67,13 +61,7 @@ const footers = [
   },
   {
     title: 'Features',
-    description: [
-      'Cool stuff',
-      'Random feature',
-      'Team feature',
-      'Developer stuff',
-      'Another one',
-    ],
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
   },
   {
     title: 'Resources',
@@ -101,28 +89,13 @@ export default function Landing() {
             Company name
           </Typography>
           <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
+            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
               Features
             </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
+            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
               Enterprise
             </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
+            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
               Support
             </Link>
           </nav>
@@ -133,88 +106,76 @@ export default function Landing() {
       </AppBar>
       {/* Hero unit */}
       <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
+        <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
           Pricing
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" component="p">
-          Quickly build an effective pricing table for your potential customers with
-          this layout. It&aposs built with default MUI components with little
-          customization.
+          Quickly build an effective pricing table for your potential customers with this layout.
+          It&aposs built with default MUI components with little customization.
         </Typography>
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
-          <For each={tiers}>{(tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid
-              item
-              xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={4}
-            >
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  subheaderTypographyProps={{
-                    align: 'center',
-                  }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
-                />
-                <CardContent>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline',
-                      mb: 2,
+          <For each={tiers}>
+            {(tier) => (
+              // Enterprise card is full width at sm breakpoint
+              <Grid item xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                <Card>
+                  <CardHeader
+                    title={tier.title}
+                    subheader={tier.subheader}
+                    titleTypographyProps={{ align: 'center' }}
+                    action={tier.title === 'Pro' ? <StarIcon /> : null}
+                    subheaderTypographyProps={{
+                      align: 'center',
                     }}
-                  >
-                    <Typography component="h2" variant="h3" color="text.primary">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      /mo
-                    </Typography>
-                  </Box>
-                  <ul>
-                    <For each={tier.description}>{(line: string) => (
-                      <Typography
-                        component="li"
-                        variant="subtitle1"
-                        align="center"
-                      >
-                        {line}
+                    sx={{
+                      backgroundColor: (theme) =>
+                        theme.palette.mode === 'light'
+                          ? theme.palette.grey[200]
+                          : theme.palette.grey[700],
+                    }}
+                  />
+                  <CardContent>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'baseline',
+                        mb: 2,
+                      }}
+                    >
+                      <Typography component="h2" variant="h3" color="text.primary">
+                        ${tier.price}
                       </Typography>
-                    )}</For>
-                  </ul>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    href={tier.buttonHref}
-                    fullWidth
-                    variant={tier.buttonVariant as 'outlined' | 'contained'}
-                  >
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          )}</For>
+                      <Typography variant="h6" color="text.secondary">
+                        /mo
+                      </Typography>
+                    </Box>
+                    <ul>
+                      <For each={tier.description}>
+                        {(line: string) => (
+                          <Typography component="li" variant="subtitle1" align="center">
+                            {line}
+                          </Typography>
+                        )}
+                      </For>
+                    </ul>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      href={tier.buttonHref}
+                      fullWidth
+                      variant={tier.buttonVariant as 'outlined' | 'contained'}
+                    >
+                      {tier.buttonText}
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            )}
+          </For>
         </Grid>
       </Container>
       {/* Footer */}
@@ -228,22 +189,26 @@ export default function Landing() {
         }}
       >
         <Grid container spacing={4} justifyContent="space-evenly">
-          <For each={footers}>{(footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                <For each={footer.description}>{(item) => (
-                  <li>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
-                  </li>
-                )}</For>
-              </ul>
-            </Grid>
-          )}</For>
+          <For each={footers}>
+            {(footer) => (
+              <Grid item xs={6} sm={3} key={footer.title}>
+                <Typography variant="h6" color="text.primary" gutterBottom>
+                  {footer.title}
+                </Typography>
+                <ul>
+                  <For each={footer.description}>
+                    {(item) => (
+                      <li>
+                        <Link href="#" variant="subtitle1" color="text.secondary">
+                          {item}
+                        </Link>
+                      </li>
+                    )}
+                  </For>
+                </ul>
+              </Grid>
+            )}
+          </For>
         </Grid>
         <Copyright sx={{ mt: 5 }} />
       </Container>

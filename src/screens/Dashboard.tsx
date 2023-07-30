@@ -1,4 +1,5 @@
 import { createSignal } from 'solid-js'
+import { Outlet } from '@solidjs/router'
 import { styled } from '@suid/material/styles'
 import CssBaseline from '@suid/material/CssBaseline'
 import MuiDrawer from '@suid/material/Drawer'
@@ -11,17 +12,12 @@ import Divider from '@suid/material/Divider'
 import IconButton from '@suid/material/IconButton'
 import Badge from '@suid/material/Badge'
 import Container from '@suid/material/Container'
-import Grid from '@suid/material/Grid'
-import Paper from '@suid/material/Paper'
 import MenuIcon from '@suid/icons-material/Menu'
 import ChevronLeftIcon from '@suid/icons-material/ChevronLeft'
 import NotificationsIcon from '@suid/icons-material/Notifications'
 
 import Copyright from '../common/Copyright'
 import { mainListItems, secondaryListItems } from '../common/dashboard/listItems'
-import Chart from '../common/dashboard/Chart'
-import Deposits from '../common/dashboard/Deposits'
-import Orders from '../common/dashboard/Orders'
 
 const drawerWidth = 240
 
@@ -142,46 +138,7 @@ export default function Dashboard() {
             mb: 4,
           }}
         >
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: 240,
-                }}
-              >
-                <Chart height={180} />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: 240,
-                }}
-              >
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <Orders />
-              </Paper>
-            </Grid>
-          </Grid>
+          <Outlet />
           <Copyright sx={{ pt: 4 }} />
         </Container>
       </Box>
