@@ -2,36 +2,37 @@ import type { Component } from 'solid-js'
 import { Routes, Route } from '@solidjs/router'
 import { lazy } from 'solid-js'
 
-import Home from './screens/Landing'
+import Home from './screens/LandingPage'
 import RouteGuard from './screens/RouteGuard'
-import Orders from './screens/dashboard/Orders'
 
-const SignIn = lazy(() => import('./screens/SignIn'))
-const RecoverPassword = lazy(() => import('./screens/RecoverPassword'))
-const ConfirmEmail = lazy(() => import('./screens/ConfirmEmail'))
-const SignUp = lazy(() => import('./screens/SignUp'))
-const Dashboard = lazy(() => import('./screens/Dashboard'))
-// const Orders = lazy(() => import('./screens/dashboard/Orders'))
+const SignInPage = lazy(() => import('./screens/SignInPage'))
+const RecoverPasswordPage = lazy(() => import('./screens/RecoverPasswordPage'))
+const ConfirmEmailPage = lazy(() => import('./screens/ConfirmEmailPage'))
+const SignUpPage = lazy(() => import('./screens/SignUpPage'))
+const DashboardLayout = lazy(() => import('./screens/DashboardLayout'))
+const OrdersPage = lazy(() => import('./screens/dashboard/OrdersPage'))
+const SubscriptionPage = lazy(() => import('./screens/dashboard/SubscriptionPage'))
+const ProfilePage = lazy(() => import('./screens/dashboard/ProfilePage'))
 
 const App: Component = () => (
   <>
     <Routes>
       <Route path="/" component={Home} />
-      <Route path="/signin" component={SignIn} />
+      <Route path="/signin" component={SignInPage} />
       <Route path="/signup">
-        <Route path="/" component={SignUp} />
-        <Route path="/:package" component={SignUp} />
+        <Route path="/" component={SignUpPage} />
+        <Route path="/:package" component={SignUpPage} />
       </Route>
-      <Route path="/recover-password" component={RecoverPassword} />
-      <Route path="/confirm-email" component={ConfirmEmail} />
+      <Route path="/recover-password" component={RecoverPasswordPage} />
+      <Route path="/confirm-email" component={ConfirmEmailPage} />
       <Route path="/" component={RouteGuard}>
-        <Route path="/dashboard" component={Dashboard}>
-          <Route path="/" component={Orders} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/profile" component={Orders} />
-          <Route path="/settings" component={Orders} />
+        <Route path="/dashboard" component={DashboardLayout}>
+          <Route path="/" component={OrdersPage} />
+          <Route path="/orders" component={OrdersPage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/settings" component={OrdersPage} />
+          <Route path="/subscription" component={SubscriptionPage} />
         </Route>
-        <Route path="/logout" component={Dashboard} />
       </Route>
       <Route path="*" element={<div>Page Not found!!!</div>} />
     </Routes>

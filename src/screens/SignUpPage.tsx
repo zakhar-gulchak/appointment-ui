@@ -18,11 +18,8 @@ import { auth } from '../config/firebase'
 import Copyright from '../common/Copyright'
 import { redirectLoggedInUser } from '../utils/navigation'
 
-const SignUp: Component = () => {
+const SignUpPage: Component = () => {
   redirectLoggedInUser()
-
-  const [email, setEmail] = createSignal('')
-  const [password, setPassword] = createSignal('')
   const [error, setError] = createSignal('')
   const [errorType, setErrorType] = createSignal<'email' | 'password' | null>(null)
 
@@ -126,7 +123,7 @@ const SignUp: Component = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/signin" variant="body2">
+              <Link href="/src/screens/SignInPage" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -138,4 +135,4 @@ const SignUp: Component = () => {
   )
 }
 
-export default SignUp
+export default SignUpPage
