@@ -9,19 +9,22 @@ interface MyUser {
   accessToken: string
   refreshToken: string
   expirationTime: string
+  photoUrl: string
 }
+
 const ACCESS_TOKEN_LOCAL_STORAGE_KEY = 'access_token'
 const REFRESH_TOKEN_LOCAL_STORAGE_KEY = 'refresh_token'
 const USER_LOCAL_STORAGE_KEY = 'user'
 
 function createUserData() {
-  const { email, lastName, firstName, expirationTime } = JSON.parse(
+  const { photoUrl, email, lastName, firstName, expirationTime } = JSON.parse(
     localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}',
   ) as MyUser
   const [userData, setUserData] = createStore({
     accessToken: localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY) ?? '',
     refreshToken: localStorage.getItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY) ?? '',
     user: {
+      photoUrl,
       email,
       lastName,
       firstName,

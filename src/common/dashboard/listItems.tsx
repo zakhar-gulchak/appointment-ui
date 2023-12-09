@@ -1,5 +1,6 @@
 import ListItemButton from '@suid/material/ListItemButton'
 import ListItemIcon from '@suid/material/ListItemIcon'
+import PersonIcon from '@suid/icons-material/Person'
 import ListItemText from '@suid/material/ListItemText'
 import ListSubheader from '@suid/material/ListSubheader'
 import DashboardIcon from '@suid/icons-material/Dashboard'
@@ -8,16 +9,29 @@ import PeopleIcon from '@suid/icons-material/People'
 import BarChartIcon from '@suid/icons-material/BarChart'
 import LayersIcon from '@suid/icons-material/Layers'
 import AssignmentIcon from '@suid/icons-material/Assignment'
+import CalendarIcon from '@suid/icons-material/CalendarMonth'
 
 export const mainListItems = () => (
   <>
+    <ListItemButton component='a' href='/dashboard/calendar'>
+      <ListItemIcon>
+        <CalendarIcon />
+      </ListItemIcon>
+      <ListItemText primary="Calendar" />
+    </ListItemButton>
+    <ListItemButton component='a' href='/dashboard/profile'>
+      <ListItemIcon>
+        <PersonIcon />
+      </ListItemIcon>
+      <ListItemText primary="Profile" />
+    </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="DashboardPage" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component='a' href='/dashboard/orders'>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>

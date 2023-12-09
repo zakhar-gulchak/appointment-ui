@@ -1,13 +1,13 @@
 import { createSignal } from 'solid-js'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
+import { A } from '@solidjs/router'
 import Avatar from '@suid/material/Avatar'
 import Button from '@suid/material/Button'
 import CssBaseline from '@suid/material/CssBaseline'
 import TextField from '@suid/material/TextField'
 import FormControlLabel from '@suid/material/FormControlLabel'
 import Checkbox from '@suid/material/Checkbox'
-import Link from '@suid/material/Link'
 import Paper from '@suid/material/Paper'
 import Box from '@suid/material/Box'
 import Grid from '@suid/material/Grid'
@@ -141,14 +141,14 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <A href="/recover-password" variant="body2">
                   Forgot password?
-                </Link>
+                </A>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <A href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </A>
               </Grid>
             </Grid>
             <Copyright sx={{ mt: 5 }} />

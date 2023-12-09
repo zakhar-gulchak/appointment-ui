@@ -73,7 +73,7 @@ const footers = [
   },
 ]
 
-export default function Landing() {
+export default function LandingPage() {
   return (
     <>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
