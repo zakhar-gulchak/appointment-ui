@@ -1,9 +1,9 @@
-import { Outlet, useNavigate } from '@solidjs/router'
+import { useNavigate } from '@solidjs/router'
 import { createEffect } from 'solid-js'
 
 import { userData } from '../store/user'
 
-export default function RouteGuard() {
+export default function RouteGuard(props) {
   const navigate = useNavigate()
   createEffect(() => {
     if (!userData.accessToken || new Date(userData.user.expirationTime).getTime() < Date.now()) {
@@ -13,7 +13,7 @@ export default function RouteGuard() {
 
   return (
     <div>
-      <Outlet />
+      {props.children}
     </div>
   )
 }

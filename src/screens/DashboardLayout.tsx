@@ -85,6 +85,7 @@ export default function DashboardLayout() {
   }
 
   const handleOpenUserMenu = (event: Event) => {
+    console.log(event.currentTarget)
     setAnchorElUser(event.currentTarget)
   }
   const handleCloseUserMenu = () => {
@@ -147,13 +148,11 @@ export default function DashboardLayout() {
               </Badge>
             </IconButton>
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={userData().user.avatar} />
-                </IconButton>
-              </Tooltip>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src={userData.user.photoUrl} />
+              </IconButton>
               <Menu
-                sx={{ mt: '45px' }}
+                sx={{ mt: 6 }}
                 id="menu-appbar"
                 anchorEl={anchorElUser()}
                 anchorOrigin={{
@@ -168,7 +167,7 @@ export default function DashboardLayout() {
                 open={Boolean(anchorElUser())}
                 onClose={handleCloseUserMenu}
               >
-                <For each={settings}>{(setting) => (
+                <For each={settings}>{setting => (
                   <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>

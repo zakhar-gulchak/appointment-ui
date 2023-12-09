@@ -1,5 +1,5 @@
-export default function Tooltip() {
+export default function Tooltip(props) {
   return (
-    <div>Tooltip</div>
+    <div>{props.children}</div>
   )
 }
