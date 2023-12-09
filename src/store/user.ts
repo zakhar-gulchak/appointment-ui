@@ -1,4 +1,5 @@
 import { createStore } from 'solid-js/store'
+import { User } from '@firebase/auth'
 import { createEffect, createRoot } from 'solid-js'
 
 interface MyUser {
