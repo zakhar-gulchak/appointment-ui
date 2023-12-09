@@ -73,7 +73,7 @@ const Drawer = styled(MuiDrawer)(({ theme, props }) => ({
   },
 }))
 
-export default function DashboardLayout() {
+export default function DashboardLayout(props) {
   const [open, setOpen] = createSignal(false)
   const [anchorElUser, setAnchorElUser] = createSignal(null)
   const [alertOpen] = createSignal(true) // todo - connect store
@@ -215,7 +215,7 @@ export default function DashboardLayout() {
               mb: 4,
             }}
           >
-            <Outlet />
+            {props.children}
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

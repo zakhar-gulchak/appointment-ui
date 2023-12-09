@@ -4,7 +4,6 @@ import { Route, Router } from '@solidjs/router'
 import { lazy } from 'solid-js'
 import { render } from 'solid-js/web'
 
-import App from './App'
 import Home from './screens/LandingPage'
 import RouteGuard from './screens/RouteGuard'
 import './index.scss'
@@ -17,7 +16,6 @@ const DashboardLayout = lazy(() => import('./screens/DashboardLayout'))
 const OrdersPage = lazy(() => import('./screens/dashboard/OrdersPage'))
 const SubscriptionPage = lazy(() => import('./screens/dashboard/SubscriptionPage'))
 const ProfilePage = lazy(() => import('./screens/dashboard/ProfilePage'))
-
 
 render(
   () => (

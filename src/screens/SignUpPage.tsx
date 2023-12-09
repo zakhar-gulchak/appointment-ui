@@ -1,13 +1,13 @@
 import { Component, createSignal } from 'solid-js'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
+import { A } from '@solidjs/router'
 import Avatar from '@suid/material/Avatar'
 import Button from '@suid/material/Button'
 import CssBaseline from '@suid/material/CssBaseline'
 import TextField from '@suid/material/TextField'
 import FormControlLabel from '@suid/material/FormControlLabel'
 import Checkbox from '@suid/material/Checkbox'
-import Link from '@suid/material/Link'
 import Grid from '@suid/material/Grid'
 import Box from '@suid/material/Box'
 import LockOutlinedIcon from '@suid/icons-material/LockOutlined'
@@ -123,9 +123,9 @@ const SignUpPage: Component = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/signin" variant="body2">
+              <A href="/signin" variant="body2">
                 Already have an account? Sign in
-              </Link>
+              </A>
             </Grid>
           </Grid>
         </Box>
