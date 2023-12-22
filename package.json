@@ -5,8 +5,8 @@
   "description": "UI for appointment application.",
   "author": "Gulchak Zakhar <gulchak.zahar@gmail.com>",
   "engines": {
-    "node": ">=18",
-    "npm": ">=9"
+    "node": ">=20",
+    "npm": ">=10"
   },
   "scripts": {
     "build": "vite build",
