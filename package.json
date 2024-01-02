@@ -5,7 +5,7 @@
   "description": "UI for appointment application.",
   "author": "Gulchak Zakhar <gulchak.zahar@gmail.com>",
   "engines": {
-    "node": ">=20",
+    "node": ">=18",
     "npm": ">=10"
   },
   "scripts": {
@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@solidjs/testing-library": "^0.8.4",
+    "@solidjs/testing-library": "^0.8.5",
     "@suid/vite-plugin": "^0.1.5",
     "@testing-library/jest-dom": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
@@ -30,22 +30,22 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-solid": "^0.13.0",
     "jsdom": "^23.0.1",
-    "prettier": "3.1.0",
-    "sass": "^1.69.5",
+    "prettier": "3.1.1",
+    "sass": "^1.69.6",
     "solid-devtools": "^0.29.2",
     "solid-jest": "^0.2.0",
     "typescript": "^5.3.3",
     "vite": "^4.5.1",
     "vite-plugin-solid": "^2.8.0",
-    "vitest": "^1.0.4"
+    "vitest": "^1.1.1"
   },
   "dependencies": {
-    "@solidjs/router": "^0.10.1",
+    "@solidjs/router": "^0.10.5",
     "@suid/icons-material": "^0.6.11",
     "@suid/material": "^0.15.1",
-    "apexcharts": "^3.44.2",
+    "apexcharts": "^3.45.1",
     "firebase": "^10.7.1",
-    "solid-apexcharts": "^0.3.2",
+    "solid-apexcharts": "^0.3.3",
     "solid-js": "^1.8.7"
   },
   "workspaces": [
