@@ -10,13 +10,13 @@ import TableRow from '@suid/material/TableRow'
 import Title from './Title'
 
 // Generate Order Data
-function createData(
+function createData (
   id: number,
   date: string,
   name: string,
   shipTo: string,
   paymentMethod: string,
-  amount: number,
+  amount: number
 ) {
   return { id, date, name, shipTo, paymentMethod, amount }
 }
@@ -29,22 +29,22 @@ const rows = [
   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ]
 
-function preventDefault(event: MouseEvent) {
+function preventDefault (event: MouseEvent) {
   event.preventDefault()
 }
 
-export default function Orders() {
+export default function Orders () {
   return (
     <>
       <Title>Recent Orders</Title>
-      <Table size="small">
+      <Table size='small'>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Ship To</TableCell>
             <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell align='right'>Sale Amount</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,13 +55,13 @@ export default function Orders() {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.shipTo}</TableCell>
                 <TableCell>{row.paymentMethod}</TableCell>
-                <TableCell align="right">{`$${row.amount}`}</TableCell>
+                <TableCell align='right'>{`$${row.amount}`}</TableCell>
               </TableRow>
             )}
           </For>
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+      <Link color='primary' href='#' onClick={preventDefault} sx={{ mt: 3 }}>
         See more orders
       </Link>
     </>

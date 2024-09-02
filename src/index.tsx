@@ -20,25 +20,25 @@ const ProfilePage = lazy(() => import('./screens/dashboard/ProfilePage'))
 render(
   () => (
     <Router>
-      <Route path="/" component={Home} />
-      <Route path="/signin" component={SignInPage} />
-      <Route path="/signup">
-        <Route path="/" component={SignUpPage} />
-        <Route path="/:package" component={SignUpPage} />
+      <Route path='/' component={Home} />
+      <Route path='/signin' component={SignInPage} />
+      <Route path='/signup'>
+        <Route path='/' component={SignUpPage} />
+        <Route path='/:package' component={SignUpPage} />
       </Route>
-      <Route path="/recover-password" component={RecoverPasswordPage} />
-      <Route path="/confirm-email" component={ConfirmEmailPage} />
-      <Route path="/" component={RouteGuard}>
-        <Route path="/dashboard" component={DashboardLayout}>
-          <Route path="/" component={OrdersPage} />
-          <Route path="/orders" component={OrdersPage} />
-          <Route path="/profile" component={ProfilePage} />
-          <Route path="/settings" component={OrdersPage} />
-          <Route path="/subscription" component={SubscriptionPage} />
+      <Route path='/recover-password' component={RecoverPasswordPage} />
+      <Route path='/confirm-email' component={ConfirmEmailPage} />
+      <Route path='/' component={RouteGuard}>
+        <Route path='/dashboard' component={DashboardLayout}>
+          <Route path='/' component={OrdersPage} />
+          <Route path='/orders' component={OrdersPage} />
+          <Route path='/profile' component={ProfilePage} />
+          <Route path='/settings' component={OrdersPage} />
+          <Route path='/subscription' component={SubscriptionPage} />
         </Route>
       </Route>
-      <Route path="*" component={() => <div>Page Not found!!!</div>} />
+      <Route path='*' component={() => <div>Page Not found!!!</div>} />
     </Router>
   ),
-  document.getElementById('root')!,
+  document.getElementById('root')!
 )

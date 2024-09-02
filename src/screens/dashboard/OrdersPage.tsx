@@ -4,7 +4,7 @@ import Chart from '../../common/dashboard/Chart'
 import Deposits from '../../common/dashboard/Deposits'
 import Orders from '../../common/dashboard/Orders'
 
-export default function OrdersPage() {
+export default function OrdersPage () {
   return (
     <Grid container spacing={3}>
       {/* Chart */}

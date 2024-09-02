@@ -73,7 +73,7 @@ const Drawer = styled(MuiDrawer)(({ theme, props }) => ({
   },
 }))
 
-export default function DashboardLayout(props) {
+export default function DashboardLayout (props) {
   const [open, setOpen] = createSignal(false)
   const [anchorElUser, setAnchorElUser] = createSignal(null)
   const [alertOpen] = createSignal(true) // todo - connect store
@@ -93,25 +93,32 @@ export default function DashboardLayout(props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      {alertOpen() && <Alert
-        action={
-          <Button color="inherit" size="small" onClick={() => navigate('/dashboard/subscription', { replace: true })}>
-            Renew subscription
-          </Button>
-        }
-        icon={<ErrorIcon fontSize="inherit" />}
-        severity="warning">
-        Your subscription has expired. To continue using the service, please buy a new subscription.
-      </Alert>
-      }
+      {alertOpen() && (
+        <Alert
+          action={
+            <Button
+              color='inherit'
+              size='small'
+              onClick={() => navigate('/dashboard/subscription', { replace: true })}
+            >
+              Renew subscription
+            </Button>
+          }
+          icon={<ErrorIcon fontSize='inherit' />}
+          severity='warning'
+        >
+          Your subscription has expired. To continue using the service, please buy a new
+          subscription.
+        </Alert>
+      )}
       <Box sx={{ display: 'flex', position: 'relative' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open()}>
+        <AppBar position='absolute' open={open()}>
           <Toolbar sx={{ pr: '24px' }}>
             <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
+              edge='start'
+              color='inherit'
+              aria-label='open drawer'
               onClick={toggleDrawer}
               sx={{
                 marginRight: '36px',
@@ -122,10 +129,10 @@ export default function DashboardLayout(props) {
             </IconButton>
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <Typography
-              variant="h6"
+              variant='h6'
               noWrap
-              component="a"
-              href="/"
+              component='a'
+              href='/'
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -138,21 +145,21 @@ export default function DashboardLayout(props) {
             >
               LOGO
             </Typography>
-            <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
               Dashboard
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+            <IconButton color='inherit'>
+              <Badge badgeContent={4} color='secondary'>
                 <NotificationsIcon />
               </Badge>
             </IconButton>
             <Box sx={{ flexGrow: 0 }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={userData.user.photoUrl} />
+                <Avatar alt='Remy Sharp' src={userData.user.photoUrl} />
               </IconButton>
               <Menu
                 sx={{ mt: 6 }}
-                id="menu-appbar"
+                id='menu-appbar'
                 anchorEl={anchorElUser()}
                 anchorOrigin={{
                   vertical: 'top',
@@ -166,16 +173,18 @@ export default function DashboardLayout(props) {
                 open={Boolean(anchorElUser())}
                 onClose={handleCloseUserMenu}
               >
-                <For each={settings}>{setting => (
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                )}</For>
+                <For each={settings}>
+                  {(setting) => (
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign='center'>{setting}</Typography>
+                    </MenuItem>
+                  )}
+                </For>
               </Menu>
             </Box>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open()}>
+        <Drawer variant='permanent' open={open()}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -189,16 +198,16 @@ export default function DashboardLayout(props) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component='nav'>
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
         </Drawer>
         <Box
-          component="main"
+          component='main'
           sx={{
-            get backgroundColor() {
+            get backgroundColor () {
               return (theme) =>
                 theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900]
             },
@@ -209,7 +218,7 @@ export default function DashboardLayout(props) {
         >
           <Toolbar />
           <Container
-            maxWidth="lg"
+            maxWidth='lg'
             sx={{
               mt: 4,
               mb: 4,

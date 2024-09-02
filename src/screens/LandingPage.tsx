@@ -73,50 +73,50 @@ const footers = [
   },
 ]
 
-export default function LandingPage() {
+export default function LandingPage () {
   return (
     <>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <AppBar
-        position="static"
-        color="default"
+        position='static'
+        color='default'
         elevation={0}
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
             Company name
           </Typography>
           <nav>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
               Features
             </Link>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
               Enterprise
             </Link>
-            <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+            <Link variant='button' color='text.primary' href='#' sx={{ my: 1, mx: 1.5 }}>
               Support
             </Link>
           </nav>
-          <Button href="/signin" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          <Button href='/signin' variant='outlined' sx={{ my: 1, mx: 1.5 }}>
             Login
           </Button>
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
-      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-        <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
+      <Container disableGutters maxWidth='sm' component='main' sx={{ pt: 8, pb: 6 }}>
+        <Typography component='h1' variant='h2' align='center' color='text.primary' gutterBottom>
           Pricing
         </Typography>
-        <Typography variant="h5" align="center" color="text.secondary" component="p">
+        <Typography variant='h5' align='center' color='text.secondary' component='p'>
           Quickly build an effective pricing table for your potential customers with this layout.
           It&aposs built with default MUI components with little customization.
         </Typography>
       </Container>
       {/* End hero unit */}
-      <Container maxWidth="md" component="main">
-        <Grid container spacing={5} alignItems="flex-end">
+      <Container maxWidth='md' component='main'>
+        <Grid container spacing={5} alignItems='flex-end'>
           <For each={tiers}>
             {(tier) => (
               // Enterprise card is full width at sm breakpoint
@@ -146,17 +146,17 @@ export default function LandingPage() {
                         mb: 2,
                       }}
                     >
-                      <Typography component="h2" variant="h3" color="text.primary">
+                      <Typography component='h2' variant='h3' color='text.primary'>
                         ${tier.price}
                       </Typography>
-                      <Typography variant="h6" color="text.secondary">
+                      <Typography variant='h6' color='text.secondary'>
                         /mo
                       </Typography>
                     </Box>
                     <ul>
                       <For each={tier.description}>
                         {(line: string) => (
-                          <Typography component="li" variant="subtitle1" align="center">
+                          <Typography component='li' variant='subtitle1' align='center'>
                             {line}
                           </Typography>
                         )}
@@ -180,26 +180,26 @@ export default function LandingPage() {
       </Container>
       {/* Footer */}
       <Container
-        maxWidth="md"
-        component="footer"
+        maxWidth='md'
+        component='footer'
         sx={{
           borderTop: (theme) => `1px solid ${theme.palette.divider}`,
           mt: 8,
           py: [3, 6],
         }}
       >
-        <Grid container spacing={4} justifyContent="space-evenly">
+        <Grid container spacing={4} justifyContent='space-evenly'>
           <For each={footers}>
             {(footer) => (
               <Grid item xs={6} sm={3} key={footer.title}>
-                <Typography variant="h6" color="text.primary" gutterBottom>
+                <Typography variant='h6' color='text.primary' gutterBottom>
                   {footer.title}
                 </Typography>
                 <ul>
                   <For each={footer.description}>
                     {(item) => (
                       <li>
-                        <Link href="#" variant="subtitle1" color="text.secondary">
+                        <Link href='#' variant='subtitle1' color='text.secondary'>
                           {item}
                         </Link>
                       </li>

@@ -3,7 +3,8 @@ import { SolidApexCharts } from 'solid-apexcharts'
 
 import Title from './Title'
 
-export default function Chart(props: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function Chart (props: any) {
   const [options] = createSignal({
     chart: {
       id: 'solidchart-example',
@@ -25,8 +26,8 @@ export default function Chart(props: any) {
     <>
       <Title>Today</Title>
       <SolidApexCharts
-        width="500"
-        type="bar"
+        width='500'
+        type='bar'
         options={options()}
         series={series().list}
         {...props}

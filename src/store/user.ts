@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store'
-import { User } from '@firebase/auth'
+// import { User } from '@firebase/auth'
 import { createEffect, createRoot } from 'solid-js'
 
 interface MyUser {
@@ -16,9 +16,9 @@ const ACCESS_TOKEN_LOCAL_STORAGE_KEY = 'access_token'
 const REFRESH_TOKEN_LOCAL_STORAGE_KEY = 'refresh_token'
 const USER_LOCAL_STORAGE_KEY = 'user'
 
-function createUserData() {
+function createUserData () {
   const { photoUrl, email, lastName, firstName, expirationTime } = JSON.parse(
-    localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}',
+    localStorage.getItem(USER_LOCAL_STORAGE_KEY) ?? '{}'
   ) as MyUser
   const [userData, setUserData] = createStore({
     accessToken: localStorage.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY) ?? '',

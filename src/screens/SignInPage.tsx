@@ -19,7 +19,7 @@ import Copyright from '../common/Copyright'
 import { redirectLoggedInUser } from '../utils/navigation'
 import { setUserData } from '../store/user'
 
-export default function SignInSide() {
+export default function SignInSide () {
   redirectLoggedInUser()
 
   // todo: implement remember me
@@ -60,7 +60,7 @@ export default function SignInSide() {
   }
 
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <Grid container component='main' sx={{ height: '100vh' }}>
       <CssBaseline />
       <Grid
         item
@@ -70,7 +70,7 @@ export default function SignInSide() {
         sx={{
           backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
           backgroundRepeat: 'no-repeat',
-          get backgroundColor() {
+          get backgroundColor () {
             return (t: { palette: { mode: string; grey: string[] } }) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]
           },
@@ -96,42 +96,42 @@ export default function SignInSide() {
           >
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Sign in
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component='form' noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
               error={errorType() === 'email' || undefined}
               helperText={error()}
               autoFocus
             />
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
               error={errorType() === 'password' || undefined}
               helperText={error()}
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              control={<Checkbox value='remember' color='primary' />}
+              label='Remember me'
             />
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{
                 mt: 3,
                 mb: 2,
@@ -141,13 +141,13 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <A href="/recover-password" variant="body2">
+                <A href='/recover-password' variant='body2'>
                   Forgot password?
                 </A>
               </Grid>
               <Grid item>
-                <A href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <A href='/signup' variant='body2'>
+                  Don't have an account? Sign Up
                 </A>
               </Grid>
             </Grid>
