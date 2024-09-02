@@ -75,7 +75,7 @@ const Drawer = styled(MuiDrawer)(({ theme, props }) => ({
 
 export default function DashboardLayout (props) {
   const [open, setOpen] = createSignal(false)
-  const [anchorElUser, setAnchorElUser] = createSignal(null)
+  const [anchorElUser, setAnchorElUser] = createSignal<EventTarget | null>(null)
   const [alertOpen] = createSignal(true) // todo - connect store
   const settings: string[] = ['Profile', 'Dashboard']
   const navigate = useNavigate()

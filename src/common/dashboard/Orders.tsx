@@ -1,5 +1,4 @@
 import { For } from 'solid-js'
-
 import Link from '@suid/material/Link'
 import Table from '@suid/material/Table'
 import TableBody from '@suid/material/TableBody'
